@@ -2,7 +2,7 @@
 // (you wont though, it's not like its a spambot or anything...)
 
 const Discord = require("discord.js");
-const ConfigFile = require("config.JSON");
+const ConfigFile = require("./config.json");
 
 const token = ConfigFile.token;
 const id = ConfigFile.id;
@@ -28,6 +28,12 @@ client.on("message", function(message) // calls every time a message is sent
     case "ping":
       message.channel.send('Pong! Your ping is `' + `${Date.now() - message.createdTimestamp}` + ' ms`'); // right off stack overflow c;
       break;
+
+   case "embed": // not tested, probably doesn't work yet
+      var embed = new Discord.RichEmbed()
+         .addField(" ", args.join(" "));
+      message.channel.sendEmbed({embed});
+
     default:
       message.channel.send("Invalid command!");
   }
