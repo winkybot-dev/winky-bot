@@ -2,10 +2,11 @@
 // (you wont though, it's not like its a spambot or anything...)
 
 const Discord = require("discord.js");
+const ConfigFile = require("config.JSON");
 
-const token = "YOUR_TOKEN_HERE"; // don't worry, if i wanted to steal people's tokens, i wouldn't be stupid enough to make the entire thing open source
-const id = "YOUR_ID_HERE"
-const prefix = ";"; // this is the thing you enter before a command to tell the bot what you'r saying is a command, not just a random message
+const token = ConfigFile.token;
+const id = ConfigFile.id;
+const prefix = ConfigFile.prefix;
 
 var client = new Discord.Client();
 
