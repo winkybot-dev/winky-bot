@@ -1,0 +1,19 @@
+{
+  "name": "winky-bot",
+  "version": "1.0.0",
+  "description": "a discord selfbot written in discord.js",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smokals/winky-bot.git"
+  },
+  "author": "smokals",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smokals/winky-bot/issues"
+  },
+  "homepage": "https://github.com/smokals/winky-bot#readme"
+}
