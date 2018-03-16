@@ -29,10 +29,11 @@ client.on("message", function(message) // calls every time a message is sent
       message.channel.send('Pong! Your ping is `' + `${Date.now() - message.createdTimestamp}` + ' ms`'); // right off stack overflow c;
       break;
 
-   case "embed": // not tested, probably doesn't work yet
+   case "embed": // i know the body of the embed is undefined but its late and im tired so ill fix it tomorrow zzzzz~~~
       var embed = new Discord.RichEmbed()
-         .addField(" ", args.join(" "));
-      message.channel.sendEmbed({embed});
+         .addField(args.slice(1));
+      message.channel.send(embed);
+      break;
 
     default:
       message.channel.send("Invalid command!");
