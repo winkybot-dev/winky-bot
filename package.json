@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/smokals/winky-bot/issues"
   },
-  "homepage": "https://github.com/smokals/winky-bot#readme"
+  "homepage": "https://github.com/smokals/winky-bot#readme",
+  "dependencies": {
+    "discord.js": "^11.3.2"
+  }
 }
