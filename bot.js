@@ -39,7 +39,7 @@ client.on("message", function(message) // calls every time a message is sent
 
    case "embed": // command format: ;embed [TITLE] [COLOUR_IN_HEX] [Body Text]
       embed = new Discord.RichEmbed();
-      embed.addField(args[1], args.slice(3));
+      embed.addField(args[1], args.slice(3).toString());
       embed.setColor(args[2]);
       message.channel.send(embed);
       break;
