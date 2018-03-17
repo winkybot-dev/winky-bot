@@ -33,7 +33,7 @@ client.on("message", function(message) // calls every time a message is sent
   switch (args[0].toLowerCase())
   {
     case "ping":
-      message.channel.send("Pong! ``" + new Date().getTime() - message.createdTimestamp + " ms`");
+      message.channel.send("Pong! `" + new Date().getTime() - message.createdTimestamp + " ms`"); // this doesn't work (yet)
       break;
 
    case "embed": // command format: ;embed [TITLE] [COLOUR_IN_HEX] [Body Text]
