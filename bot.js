@@ -9,11 +9,18 @@ const id = ConfigFile.id;
 const prefix = ConfigFile.prefix;
 
 var client = new Discord.Client();
+var embed = new Discord.RichEmbed();
 
 client.on("ready", function()
 {
   console.log("--> bot ready!\n-> logged in with token: " + token + "\n-> user id: " + client.user.id);
   console.log("\n\nWaiting for commands...");
+});
+
+client.on("disconnected", function()
+{
+   console.log("\nDisconnected!"); // from a bot i made a long time ago, might not work
+   process.exit(1);
 });
 
 client.on("message", function(message) // calls every time a message is sent
@@ -26,12 +33,13 @@ client.on("message", function(message) // calls every time a message is sent
   switch (args[0].toLowerCase())
   {
     case "ping":
-      message.channel.send('Pong! Your ping is `' + `${Date.now() - message.createdTimestamp}` + ' ms`'); // right off stack overflow c;
+      message.channel.send("Pong! ``" + new Date().getTime() - message.createdTimestamp + " ms`");
       break;
 
-   case "embed": // i know the body of the embed is undefined but its late and im tired so ill fix it tomorrow zzzzz~~~
-      var embed = new Discord.RichEmbed()
-         .addField(args.slice(1));
+   case "embed": // command format: ;embed [TITLE] [COLOUR_IN_HEX] [Body Text]
+      embed = new Discord.RichEmbed();
+      embed.addField(args[1], args.slice(3));
+      embed.setColor(args[2]);
       message.channel.send(embed);
       break;
 
