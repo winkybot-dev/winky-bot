@@ -44,6 +44,16 @@ client.on("message", function(message) // calls every time a message is sent
       message.channel.send(embed);
       break;
 
+   case "kick":
+      message.mentions.members.first().kick(args.slice(2).join(" ")).then((member) =>
+      {   // success
+         message.channel.send(":wave: " + message.mentions.members.first().displayName + " has been kicked for `" + args.slice(2).join(" ") + "`");
+      }).catch(() =>
+      {   // error
+         message.channel.send("`The mentioned member could not be kicked!`");
+      });
+      break;
+
     default:
       message.channel.send("Invalid command!");
   }
