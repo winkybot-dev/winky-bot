@@ -19,7 +19,7 @@ client.on("ready", function()
 
 client.on("disconnected", function()
 {
-   console.log("\nDisconnected!"); // from a bot i made a long time ago, might not work
+   console.log("\nDisconnected!"); // from a bot i made a long time ago, might not work (or even have a purpose)
    process.exit(1);
 });
 
@@ -44,13 +44,23 @@ client.on("message", function(message) // calls every time a message is sent
       message.channel.send(embed);
       break;
 
-   case "kick":
+   case "kick": // command format: ;embed [@mention_user] [reason for kick]
       message.mentions.members.first().kick(args.slice(2).join(" ")).then((member) =>
       {   // success
          message.channel.send(":wave: " + message.mentions.members.first().displayName + " has been kicked for `" + args.slice(2).join(" ") + "`");
       }).catch(() =>
       {   // error
          message.channel.send("`The mentioned member could not be kicked!`");
+      });
+      break;
+
+   case "ban": // command format: ;embed [@mention_user] [reason for ban]
+      message.mentions.members.first().ban(args.slice(2).join(" ")).then((member) =>
+      {   // success
+         message.channel.send(":wave: " + message.mentions.members.first().displayName + " has been banned for `" + args.slice(2).join(" ") + "`");
+      }).catch(() =>
+      {   // error
+         message.channel.send("`The mentioned member could not be banned!`");
       });
       break;
 
