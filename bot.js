@@ -25,7 +25,7 @@ client.on("disconnected", function()
 
 client.on("message", function(message) // calls every time a message is sent
 {
-  if (!message.author.id == id) return;
+  if (!message.author.id == client.user.id) return;
   if (!message.content.startsWith(prefix)) return;
 
   var args = message.content.substring(prefix.length).split(" ");
@@ -39,7 +39,7 @@ client.on("message", function(message) // calls every time a message is sent
 
    case "embed": // command format: ;embed [TITLE] [COLOUR_IN_HEX] [Body Text]
       embed = new Discord.RichEmbed();
-      embed.addField(args[1], args.slice(3).toString());
+      embed.addField(args[1], args.slice(3).join(" "));
       embed.setColor(args[2]);
       message.channel.send(embed);
       break;
