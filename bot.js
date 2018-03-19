@@ -9,7 +9,17 @@ const id = ConfigFile.id;
 const prefix = ConfigFile.prefix;
 
 var client = new Discord.Client();
+
 var embed = new Discord.RichEmbed();
+const aboutEmbed = new Discord.RichEmbed();
+aboutEmbed.setDescription("WinkyBot is an open source Discord selfbot written with the Discord.JS library.\n\nGitHub repo: https://github.com/smokals/winky-bot");
+aboutEmbed.setColor("9932CC");
+aboutEmbed.setFooter("written by smokals - https://github.com/smokals/", "https://avatars2.githubusercontent.com/u/31916378?s=460&v=4")
+aboutEmbed.setThumbnail("https://github.com/smokals/winky-bot/blob/master/icon.png?raw=true");
+aboutEmbed.setAuthor("winky-bot : https://github.com/smokals/winky-bot/", "https://github.com/smokals/winky-bot/blob/master/icon.png?raw=true");
+aboutEmbed.addField("Support:", "not smoky#0001", true);
+aboutEmbed.addField("Report A Bug:", "[GitHub Issues Page](https://github.com/smokals/winky-bot/issues)", true);
+
 
 client.on("ready", function()
 {
@@ -44,6 +54,10 @@ client.on("message", function(message) // calls every time a message is sent
       message.channel.send(embed);
       break;
 
+   case "about":
+      message.channel.send(aboutEmbed);
+      break;
+
    case "kick": // command format: ;embed [@mention_user] [reason for kick]
       message.mentions.members.first().kick(args.slice(2).join(" ")).then((member) =>
       {   // success
@@ -65,7 +79,7 @@ client.on("message", function(message) // calls every time a message is sent
       break;
 
     default:
-      message.channel.send("Invalid command!");
+      message.channel.send("`Invalid command!`");
   }
 });
 
