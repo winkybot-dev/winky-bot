@@ -12,22 +12,22 @@ var client = new Discord.Client();
 
 var embed = new Discord.RichEmbed();
 const aboutEmbed = new Discord.RichEmbed();
-aboutEmbed.setDescription("WinkyBot is an open source Discord selfbot written with the Discord.JS library.\n\nGitHub repo: https://github.com/smokals/winky-bot");
+aboutEmbed.setDescription("winky-bot is an open source Discord selfbot written in the Discord.JS library.\n\nGitHub repo: https://github.com/smokals/winky-bot");
 aboutEmbed.setColor("9932CC");
 aboutEmbed.setFooter("written by smokals - https://github.com/smokals/", "https://avatars2.githubusercontent.com/u/31916378?s=460&v=4")
 aboutEmbed.setThumbnail("https://github.com/smokals/winky-bot/blob/master/icon.png?raw=true");
 aboutEmbed.setAuthor("winky-bot : https://github.com/smokals/winky-bot/", "https://github.com/smokals/winky-bot/blob/master/icon.png?raw=true");
 aboutEmbed.addField("Support:", "not smoky#0001", true);
-aboutEmbed.addField("Report A Bug:", "[GitHub Issues Page](https://github.com/smokals/winky-bot/issues)", true);
+aboutEmbed.addField("Report A Bug or Submit a Feature Request:", "[GitHub Issues Page](https://github.com/smokals/winky-bot/issues)", true);
 
 
-client.on("ready", function()
+client.on("ready", function() // calls when the bot is launched and logged in
 {
 	console.log("--> bot ready!\n-> logged in with token: " + token + "\n-> user id: " + client.user.id);
 	console.log("\n\nWaiting for commands...");
 });
 
-client.on("disconnected", function()
+client.on("disconnected", function() // no idea what this one does
 {
 	console.log("\nDisconnected!");
 	process.exit(1);
