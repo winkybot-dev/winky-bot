@@ -2,7 +2,7 @@
 a simple discord selfbot written in the discord.js library
 
 ## Wiki
-(here it is)[https://www.github.com/winkybot-dev/winky-bpt/wiki]
+[here it is](https://www.github.com/winkybot-dev/winky-bot/wiki)
 
 ## Installation and Setup
 
