@@ -78,6 +78,11 @@ client.on("message", function(message)
 			message.channel.send(aboutEmbed);
 			break;
 
+		// help command
+		case "help":
+			message.channel.send("`Don't worry, we have a wiki. It's better :)` https://github.com/winkybot-dev/winky-bot/issues");
+			break;
+
 		// kick command
 		case "kick": // command format: ;embed [@mention_user] [reason for kick]
 			// attempt to kick the mentioned user for the reason specified
