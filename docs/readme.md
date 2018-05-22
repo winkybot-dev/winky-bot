@@ -1,9 +1,9 @@
 # winky-bot
-a simple discord selfbot written in discord.js
+a simple discord selfbot written in the discord.js library
 
 ## how to run:
 first, edit config.JSON with your discord token & ID (just google how to find them)
-then, open a command prompt and run:
+then, open a terminal and run:
 > node bot.js
 
 ***make sure you have nodeJS installed first***
