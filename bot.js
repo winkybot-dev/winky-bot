@@ -26,7 +26,7 @@ const invalidCommandEmbed = new Discord.RichEmbed();
 invalidCommandEmbed.setDescription("Invalid command!");
 invalidCommandEmbed.setColor("9932CC");
 invalidCommandEmbed.setTitle("Error!");
-invalidCommandEmbed.setAuthor("winky-bot : https://github.com/winkybot-dev/winky-bot", "https://github.com/winkybot-dev/winky-bot/blob/master/icon.png?raw=true");
+invalidCommandEmbed.setAuthor("winky-bot", "https://github.com/winkybot-dev/winky-bot/blob/master/icon.png?raw=true");
 
 // when the bot is launched and successfully logs into the account
 client.on("ready", function()
