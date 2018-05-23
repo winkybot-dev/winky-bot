@@ -7,22 +7,26 @@ const ConfigFile = require("./config.json");
 
 // gets info from config file
 const token = ConfigFile.token;
-const id = ConfigFile.id;
 const prefix = ConfigFile.prefix;
 
 // creates an instance of Discord.Client
 var client = new Discord.Client();
 
-// creates a embed to be used for commands, and also creates the about embed and populates it with about information
+// creates a embed to be used for the embed command, and also creates other presets for other commands
 var embed = new Discord.RichEmbed();
 const aboutEmbed = new Discord.RichEmbed();
 aboutEmbed.setDescription("winky-bot is an open source Discord selfbot written in the Discord.JS library.\n\nGitHub repo: https://github.com/winkybot-dev/winky-bot");
 aboutEmbed.setColor("9932CC");
 aboutEmbed.setFooter("written by smokals - https://github.com/smokals/", "https://avatars2.githubusercontent.com/u/31916378?s=460&v=4")
 aboutEmbed.setThumbnail("https://github.com/winkybot-dev/winky-bot/blob/master/icon.png?raw=true");
-aboutEmbed.setAuthor("winky-bot : https://github.com/winkybot-dev/winky-bot", "https://github.com/smokals/winky-bot/blob/master/icon.png?raw=true");
+aboutEmbed.setAuthor("winky-bot : https://github.com/winkybot-dev/winky-bot", "https://github.com/winkybot-dev/winky-bot/blob/master/icon.png?raw=true");
 aboutEmbed.addField("Support:", "not smoky#0001", true);
 aboutEmbed.addField("Report A Bug or Submit a Feature Request:", "[GitHub Issues Page](https://github.com/winkybot-dev/winky-bot/issues)", true);
+const invalidCommandEmbed = new Discord.RichEmbed();
+invalidCommandEmbed.setDescription("Invalid command!");
+invalidCommandEmbed.setColor("9932CC");
+invalidCommandEmbed.setTitle("Error!");
+invalidCommandEmbed.setAuthor("winky-bot : https://github.com/winkybot-dev/winky-bot", "https://github.com/winkybot-dev/winky-bot/blob/master/icon.png?raw=true");
 
 // when the bot is launched and successfully logs into the account
 client.on("ready", function()
@@ -59,7 +63,7 @@ client.on("message", function(message)
 			message.channel.send("Pong!");
 			message.channel.send(new Date().getTime() - message.createdTimestamp + " ms"); // TODO: this sends a negative ping for some bizare reason...
 			// write to the nodeJS console that the ping command was executed
-			console.log("\n~ping command executed");
+			console.log("\n[*] ping command executed");
 			break;
 
 		// embed command
@@ -73,7 +77,7 @@ client.on("message", function(message)
 			// send the embed
 			message.channel.send(embed);
 			// write to the nodeJS console that the embed command was executed
-			console.log("\n~embed command executed : title=" + args[1] + ", colour=" + args[2] + ", body=" + args.slice(3).join(" "));
+			console.log("\n[*] embed command executed : title=" + args[1] + ", colour=" + args[2] + ", body=" + args.slice(3).join(" "));
 			break;
 
 		// about commannd
@@ -81,14 +85,14 @@ client.on("message", function(message)
 			// semd the embed containing about information
 			message.channel.send(aboutEmbed);
 			// write to the nodeJS console that the about command was executed
-			console.log("\n~about command executed");
+			console.log("\n[*] about command executed");
 			break;
 
 		// help command
 		case "help":
 			message.channel.send("`Don't worry, we have a wiki. It's better :)` https://github.com/winkybot-dev/winky-bot/issues");
 			// write to the nodeJS console that the help command was executed
-			console.log("\n~help command executed");
+			console.log("\n[*] help command executed");
 			break;
 
 		// kick command
@@ -98,14 +102,14 @@ client.on("message", function(message)
 			{
 				// if the user was successfully kicked, send a message
 				message.channel.send(":wave: " + message.mentions.members.first().displayName + " has been kicked for `" + args.slice(2).join(" ") + "`");
-				// write to the nodeJS console that the kick command was executed
-				console.log("\n~kick command successfully executed : target user=" + args[1] + ", reason=" + args.slice(2).join(" "));
+				// write to the nodeJS console that the kick commad was executed
+				console.log("\n[*] kick command successfully executed : target user=" + args[1] + ", reason=" + args.slice(2).join(" "));
 			}).catch(() =>
 			{
 				// if the user could not be kicked, send a message
 				message.channel.send("`The mentioned member could not be kicked!`");
 				// write to the nodeJS console that the kick command was executed
-				console.log("\n~kick command unsuccessfully executed : target user=" + args[1] + ", reason=" + args.slice(2).join(" "));
+				console.log("\n[*] kick command unsuccessfully executed : target user=" + args[1] + ", reason=" + args.slice(2).join(" "));
 			});
 			break;
 
@@ -117,14 +121,14 @@ client.on("message", function(message)
 				// if the user was successfully banned, send a message
 				message.channel.send(":wave: " + message.mentions.members.first().displayName + " has been banned for `" + args.slice(2).join(" ") + "`");
 				// write to the nodeJS console that the ban command was executed
-				console.log("\n~ban command unsuccessfully executed : target user=" + args[1] + ", reason=" + args.slice(2).join(" "));
+				console.log("\n[*] ban command unsuccessfully executed : target user=" + args[1] + ", reason=" + args.slice(2).join(" "));
 
 			}).catch(() =>
 			{
 				// if the user could not be banned, send a message
 				message.channel.send("`The mentioned member could not be banned!`");
 				// write to the nodeJS console that the ban command was executed
-				console.log("\n~ban command unsuccessfully executed : target user=" + args[1] + ", reason=" + args.slice(2).join(" "));
+				console.log("\n[*] ban command unsuccessfully executed : target user=" + args[1] + ", reason=" + args.slice(2).join(" "));
 			});
 			break;
 
@@ -132,22 +136,22 @@ client.on("message", function(message)
 		case "userinfo": // command format: ;userinfo [@mention_user]
 
 			// write to the nodeJS console that the userinfo command was executed
-			console.log("\n~userinfo command executed : target user=" + args[1]);
+			console.log("\n[*] userinfo command executed : target user=" + args[1]);
 			break;
 
 		// serverinfo command
 		case "serverinfo":
 
 			// write to the nodeJS console that the serverinfo command was executed
-			console.log("\n~serverinfo command executed");
+			console.log("\n[*] serverinfo command executed");
 			break;
 
 		// if the command was not recognised
 		default:
 			// send a message saying it was invalid TODO: make this an embed for maximum fancyness
-			message.channel.send("`Invalid command!`");
+			message.channel.send(invalidCommandEmbed);
 			// write to the nodeJS console that an invalid command was executed
-			console.log("\n~an invalid command was executed");
+			console.log("\n[*] an invalid command was executed");
 	}
 });
 
