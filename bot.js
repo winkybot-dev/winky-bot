@@ -121,23 +121,21 @@ client.on("message", function(message)
 			// attempt to kick the mentioned user for the reason specified
 			message.mentions.members.first().kick(args.slice(2).join(" ")).then((member) =>
 			{
-				// write to the nodeJS console that the kick commad was executed
-				// we log the command before we kick them so their username shows up instead of an ID
-				console.log("\n[*] kick command successfully executed : target user=" + message.mentions.members.first().displayName + ", reason=" + args.slice(2).join(" "));
-
 				// send a message confirming that the user was kicked
 				kickEmbed.setDescription(":wave: " + message.mentions.members.first().displayName + " has been kicked for `" + args.slice(2).join(" ") + "`");
 				message.channel.send(kickEmbed);
 
-			}).catch(() => // TODO: this error catching thing doesn't work:
-			{
 				// write to the nodeJS console that the kick commad was executed
-				// we log the command before we kick them so their username shows up instead of an ID
-				console.log("\n[*] kick command unsuccessfully executed : target user=" + message.mentions.members.first().displayName + ", reason=" + args.slice(2).join(" "));
+				console.log("\n[*] kick command successfully executed : target user=" + message.mentions.members.first().displayName + ", reason=" + args.slice(2).join(" "));
 
+			}).catch(() =>
+			{
 				// if the user could not be kicked, send a message
 				kickEmbed.setDescription("The mentioned member could not be kicked!");
 				message.channel.send(kickEmbed);
+
+				// write to the nodeJS console that the kick commad was executed
+				console.log("\n[*] kick command unsuccessfully executed : target user=" + message.mentions.members.first().displayName + ", reason=" + args.slice(2).join(" "));
 			});
 			break;
 
@@ -146,23 +144,21 @@ client.on("message", function(message)
 			// attempt to ban the first mentioned user for the reason specified
 			message.mentions.members.first().ban(args.slice(2).join(" ")).then((member) =>
 			{
-				// write to the nodeJS console that the ban commad was executed
-				// we log the command before we kick them so their username shows up instead of an ID
-				console.log("\n[*] ban command successfully executed : target user=" + message.mentions.members.first().displayName + ", reason=" + args.slice(2).join(" "));
-
 				// send a message confirming that the user was kicked
 				banEmbed.setDescription(":wave: " + message.mentions.members.first().displayName + " has been banned for `" + args.slice(2).join(" ") + "`");
 				message.channel.send(banEmbed);
 
+				// write to the nodeJS console that the ban commad was executed
+				console.log("\n[*] ban command successfully executed : target user=" + message.mentions.members.first().displayName + ", reason=" + args.slice(2).join(" "));
+
 			}).catch(() => // TODO: this error catching thing doesn't work:
 			{
-				// write to the nodeJS console that the ban commad was executed
-				// we log the command before we kick them so their username shows up instead of an ID
-				console.log("\n[*] ban command unsuccessfully executed : target user=" + amessage.mentions.members.first().displayName + ", reason=" + args.slice(2).join(" "));
-
 				// if the user could not be banned, send a message
 				banEmbed.setDescription("The mentioned member could not be banned!");
 				message.channel.send(banEmbed);
+
+				// write to the nodeJS console that the ban commad was executed
+				console.log("\n[*] ban command unsuccessfully executed : target user=" + amessage.mentions.members.first().displayName + ", reason=" + args.slice(2).join(" "));
 			});
 			break;
 
