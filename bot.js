@@ -30,12 +30,12 @@ invalidCommandEmbed.setColor("9932CC");
 invalidCommandEmbed.setTitle("Error!");
 invalidCommandEmbed.setAuthor("winky-bot", "https://github.com/winkybot-dev/winky-bot/blob/master/icon.png?raw=true");
 
-const kickEmbed = new Discord.RichEmbed();
+var kickEmbed = new Discord.RichEmbed();
 kickEmbed.setTitle("Kick");
 kickEmbed.setColor("9932CC");
 kickEmbed.setAuthor("winky-bot", "https://github.com/winkybot-dev/winky-bot/blob/master/icon.png?raw=true");
 
-const banEmbed = new Discord.RichEmbed();
+var banEmbed = new Discord.RichEmbed();
 kickEmbed.setTitle("Ban");
 kickEmbed.setColor("9932CC");
 kickEmbed.setAuthor("winky-bot", "https://github.com/winkybot-dev/winky-bot/blob/master/icon.png?raw=true");
@@ -117,7 +117,20 @@ client.on("message", function(message)
 			break;
 
 		// kick command
-		case "kick": // command format: ;embed [@mention_user] [reason for kick]
+		case "kick": // command format: ;kick [@mention_user] [reason for kick]
+
+			// if a user was not specified, do not execute the command
+			if (!args[1])
+			{
+				// send an error message
+				kickEmbed.setDescription("Error! No user was specified!");
+				message.channel.send(kickEmbed);
+
+				// log the error in the nodeJS console
+				console.log("\n[*] kick command unsuccessfully executed : no user was specified!");
+				break;
+			}
+
 			// attempt to kick the mentioned user for the reason specified
 			message.mentions.members.first().kick(args.slice(2).join(" ")).then((member) =>
 			{
@@ -140,7 +153,20 @@ client.on("message", function(message)
 			break;
 
 		// ban command
-		case "ban": // command format: ;embed [@mention_user] [reason for ban]
+		case "ban": // command format: ;ban [@mention_user] [reason for ban]
+
+			// if a user was not specified, do not execute the command
+			if (!args[1])
+			{
+				// send an error message
+				banEmbed.setDescription("Error! No user was specified!");
+				message.channel.send(banEmbed);
+
+				// log the error in the nodeJS console
+				console.log("\n[*] ban command unsuccessfully executed : no user was specified!");
+				break;
+			}
+
 			// attempt to ban the first mentioned user for the reason specified
 			message.mentions.members.first().ban(args.slice(2).join(" ")).then((member) =>
 			{
@@ -158,7 +184,7 @@ client.on("message", function(message)
 				message.channel.send(banEmbed);
 
 				// write to the nodeJS console that the ban commad was executed
-				console.log("\n[*] ban command unsuccessfully executed : target user=" + amessage.mentions.members.first().displayName + ", reason=" + args.slice(2).join(" "));
+				console.log("\n[*] ban command unsuccessfully executed : target user=" + message.mentions.members.first().displayName + ", reason=" + args.slice(2).join(" "));
 			});
 			break;
 
