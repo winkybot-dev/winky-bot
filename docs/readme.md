@@ -17,7 +17,7 @@ Open up the folder you git cloned into, and open `config.JSON`. Now open Discord
 Paste this into the `token` section of `config.JSON`. If you want to configure the command prefix, put that in the `prefix` section. Save the file and close it.
 
 ### Launching and Using WinkyBot
-To launch WinkyBot, open a terminal and navigate the the directory. Then, type `node bot.js` to start the bot.  
+To launch WinkyBot, open a terminal and navigate to the directory. Then, type `node bot.js` to start the bot.  
 Congratulations! Each command and what it does is on the wiki, so have fun!
 
 
